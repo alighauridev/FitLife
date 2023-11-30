@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
-import ThemeMode from "./ThemeMode"
+import { Link } from "react-router-dom";
+import ThemeMode from "./ThemeMode";
 
-import Logo from "../assets/images/Logo.svg"
+import Logo from "../assets/images/Logo.svg";
 
 const Navbar = () => {
   return (
@@ -11,17 +11,27 @@ const Navbar = () => {
         <div className="container mx-auto flex flex-wrap px-5 py-1 md:flex-row justify-between items-center pb-3 flex-col md:pb-0">
           <div className="flex title-font font-medium items-center text-gray-900 mb-2 md:mb-0">
             <Link to="/">
-              <img src={Logo} alt="Fitness Craze" className="w-8, h-8 mx-0 my-5" />
+              <img
+                src={Logo}
+                alt="Fitness Craze"
+                className="w-8, h-8 mx-0 my-5"
+              />
             </Link>
             <Link to="/">
-              <span className="ml-3 text-2xl dark:text-gray-100">Fitness Freak</span>
+              <span className="ml-3 text-2xl dark:text-gray-100">FitLife</span>
             </Link>
           </div>
           <nav className="flex flex-wrap items-center text-base justify-center">
-            <Link to="/" className="mr-2 p-2 hover:text-indigo-800 dark:text-gray-100 dark:hover:text-indigo-400">
+            <Link
+              to="/"
+              className="mr-2 p-2 hover:text-indigo-800 dark:text-gray-100 dark:hover:text-indigo-400"
+            >
               Home
             </Link>
-            <a href="#exercises" className="hover:text-indigo-800 p-2 dark:text-gray-100 dark:hover:text-indigo-400">
+            <a
+              href="#exercises"
+              className="hover:text-indigo-800 p-2 dark:text-gray-100 dark:hover:text-indigo-400"
+            >
               Exercises
             </a>
             <div className="mx-2">
@@ -31,7 +41,7 @@ const Navbar = () => {
         </div>
       </header>
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

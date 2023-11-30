@@ -4,15 +4,17 @@ import ExerciseCard from "./ExerciseCard";
 import Pagination from "./Pagination";
 
 const Exercises = () => {
-  const { searchedExercises, currentPage, exercisesPerPage } =
+  const { searchedExercises, currentPage, exercisesPerPage, apiError } =
     useExercisesData();
 
-  const indexOfLastExercise = currentPage * exercisesPerPage;
-  const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-  const currentExercises = searchedExercises.slice(
-    indexOfFirstExercise,
-    indexOfLastExercise
-  );
+  // Check if searchedExercises is an array and perform operations accordingly
+  const isExercisesArray = Array.isArray(searchedExercises);
+  const currentExercises = isExercisesArray
+    ? searchedExercises.slice(
+        currentPage * exercisesPerPage - exercisesPerPage,
+        currentPage * exercisesPerPage
+      )
+    : [];
 
   return (
     <div className="mt-12 p-5 lg:mt-28">
@@ -21,17 +23,19 @@ const Exercises = () => {
       </h3>
 
       <div className="flex flex-row flex-wrap justify-center gap-12 container mx-auto max-w-screen-xl">
-        {searchedExercises.length ? (
-          currentExercises?.map((exercise) => (
+        {isExercisesArray && searchedExercises.length ? (
+          currentExercises.map((exercise) => (
             <ExerciseCard key={exercise.id} exercise={exercise} />
           ))
+        ) : apiError ? (
+          <p className="text-center">API quota has been exceeded.</p>
         ) : (
           <CardLoader quantity={3} />
         )}
       </div>
 
       <div className="pagination mt-24 flex items-center">
-        {searchedExercises.length > 10 && <Pagination />}
+        {isExercisesArray && searchedExercises.length > 10 && <Pagination />}
       </div>
     </div>
   );
